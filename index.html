@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="Izilynk - Play, Connect, Enjoy. Retrouvez notre site, nos événements, nos réseaux sociaux, nos avis clients et nos coordonnées."
+    >
+    <title>Izilynk | Play Connect Enjoy</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      crossorigin="anonymous"
+    >
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <button
+      class="share-button"
+      type="button"
+      aria-label="Partager cette page"
+      title="Partager"
+      data-share-button
+    >
+      <i class="bi bi-share-fill" aria-hidden="true"></i>
+    </button>
+
+    <main class="page-shell min-vh-100 d-flex flex-column">
+      <section class="container linktree-container flex-grow-1 py-4 py-sm-5">
+        <div class="brand-panel mx-auto text-center">
+          <img
+            class="brand-logo img-fluid"
+            src="pictures/logo_color.svg"
+            alt="Logo Izilynk"
+            width="270"
+            height="154"
+          >
+
+          <p class="brand-description mx-auto mt-4 mb-4">
+            Découvrez Izilynk, votre espace pour jouer, vous connecter et profiter
+            d'expériences conviviales. Retrouvez ici nos liens essentiels, nos
+            événements et nos coordonnées.
+          </p>
+
+          <div class="d-grid gap-3">
+            <a class="btn link-button link-button-primary" href="construction.html" aria-label="Accéder au site internet Izilynk">
+              <i class="bi bi-globe2" aria-hidden="true"></i>
+              <span>Site internet</span>
+            </a>
+
+            <a class="btn link-button link-button-accent" href="construction.html" aria-label="Voir les événements Izilynk">
+              <i class="bi bi-calendar-event" aria-hidden="true"></i>
+              <span>Voir nos événements</span>
+            </a>
+
+            <div class="social-links d-grid gap-3 mt-1" aria-label="Réseaux sociaux">
+              <a class="btn link-button" href="https://www.instagram.com/izilynk/" target="_blank" rel="noopener" aria-label="Rejoindre Izilynk sur Instagram">
+                <i class="bi bi-instagram" aria-hidden="true"></i>
+                <span>Instagram</span>
+              </a>
+
+              <a class="btn link-button" href="https://www.facebook.com/profile.php?id=61593923006457" target="_blank" rel="noopener" aria-label="Rejoindre Izilynk sur Facebook">
+                <i class="bi bi-facebook" aria-hidden="true"></i>
+                <span>Facebook</span>
+              </a>
+
+              <a class="btn link-button" href="https://www.linkedin.com/company/izilynk" target="_blank" rel="noopener" aria-label="Rejoindre Izilynk sur LinkedIn">
+                <i class="bi bi-linkedin" aria-hidden="true"></i>
+                <span>LinkedIn</span>
+              </a>
+
+              <a class="btn link-button" href="https://chat.whatsapp.com/K9C3ibHFkdA8RoVegarHIy?s=cl&amp;p=a&amp;ilr=1" target="_blank" rel="noopener" aria-label="Rejoindre Izilynk sur WhatsApp">
+                <i class="bi bi-whatsapp" aria-hidden="true"></i>
+                <span>WhatsApp</span>
+              </a>
+            </div>
+
+            <a class="btn link-button link-button-light" href="#" aria-label="Voir les témoignages clients Izilynk">
+              <i class="bi bi-star-fill" aria-hidden="true"></i>
+              <span>Ils témoignent</span>
+            </a>
+          </div>
+
+          <address class="contact-block text-start mt-4 mb-0">
+            <p class="contact-title mb-3">Coordonnées</p>
+            <a href="mailto:contact@izilynk.fr">
+              <i class="bi bi-envelope" aria-hidden="true"></i>
+              <span>contact@izilynk.fr</span>
+            </a>
+            <a href="tel:+33613779669">
+              <i class="bi bi-telephone" aria-hidden="true"></i>
+              <span>+33 6 13 77 96 69</span>
+            </a>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=Pontoise" target="_blank" rel="noopener">
+              <i class="bi bi-geo-alt" aria-hidden="true"></i>
+              <span>Pontoise</span>
+            </a>
+          </address>
+        </div>
+      </section>
+
+      <section class="baseline-section" aria-label="Baseline Izilynk">
+        <img
+          class="baseline-image img-fluid w-100"
+          src="pictures/baseline_fond_vert.png"
+          alt="Play - Connect - Enjoy"
+          width="2917"
+          height="1667"
+        >
+      </section>
+
+      <footer class="site-footer py-3 text-center">
+        <div class="container">
+          <small>&copy; 2026 Izilynk. Tous droits réservés.</small>
+        </div>
+      </footer>
+    </main>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      const shareButton = document.querySelector("[data-share-button]");
+
+      shareButton.addEventListener("click", async () => {
+        const shareData = {
+          title: document.title,
+          text: "Retrouvez Izilynk en un lien.",
+          url: window.location.href,
+        };
+
+        if (navigator.share) {
+          try {
+            await navigator.share(shareData);
+          } catch (error) {
+            if (error.name !== "AbortError") {
+              console.error("Le partage a echoue.", error);
+            }
+          }
+          return;
+        }
+
+        if (navigator.clipboard) {
+          await navigator.clipboard.writeText(window.location.href);
+          shareButton.classList.add("is-copied");
+          shareButton.setAttribute("aria-label", "Lien copie");
+          setTimeout(() => {
+            shareButton.classList.remove("is-copied");
+            shareButton.setAttribute("aria-label", "Partager cette page");
+          }, 1800);
+        }
+      });
+    </script>
+  </body>
+</html>
