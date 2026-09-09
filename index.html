@@ -127,8 +127,19 @@
     ></script>
     <script>
       const shareButton = document.querySelector("[data-share-button]");
+      let copiedTimeout;
+      let isSharing = false;
 
       shareButton.addEventListener("click", async () => {
+        if (isSharing) {
+          return;
+        }
+
+        window.clearTimeout(copiedTimeout);
+        shareButton.classList.remove("is-copied");
+        shareButton.classList.remove("share-reset");
+        shareButton.setAttribute("aria-label", "Partager cette page");
+
         const shareData = {
           title: document.title,
           text: "Retrouvez Izilynk en un lien.",
@@ -136,24 +147,44 @@
         };
 
         if (navigator.share) {
+          isSharing = true;
+          shareButton.classList.add("is-sharing");
+          const resetShareButton = () => {
+            shareButton.classList.add("share-reset");
+            shareButton.classList.remove("is-sharing");
+            shareButton.blur();
+            requestAnimationFrame(() => {
+              shareButton.classList.remove("share-reset");
+            });
+          };
+
           try {
             await navigator.share(shareData);
           } catch (error) {
             if (error.name !== "AbortError") {
               console.error("Le partage a echoue.", error);
             }
+          } finally {
+            isSharing = false;
+            resetShareButton();
           }
           return;
         }
 
         if (navigator.clipboard) {
-          await navigator.clipboard.writeText(window.location.href);
-          shareButton.classList.add("is-copied");
-          shareButton.setAttribute("aria-label", "Lien copie");
-          setTimeout(() => {
-            shareButton.classList.remove("is-copied");
-            shareButton.setAttribute("aria-label", "Partager cette page");
-          }, 1800);
+          try {
+            await navigator.clipboard.writeText(window.location.href);
+            shareButton.classList.add("is-copied");
+            shareButton.setAttribute("aria-label", "Lien copie");
+            copiedTimeout = window.setTimeout(() => {
+              shareButton.classList.remove("is-copied");
+              shareButton.setAttribute("aria-label", "Partager cette page");
+              shareButton.blur();
+            }, 1800);
+          } catch (error) {
+            console.error("La copie du lien a echoue.", error);
+            shareButton.blur();
+          }
         }
       });
     </script>
