@@ -1,3 +1,43 @@
+@font-face {
+  font-family: "Poppins";
+  src: url("fonts/Poppins-Regular .ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("fonts/Poppins-Medium .ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("fonts/Poppins-SemiBold .ttf") format("truetype");
+  font-weight: 600 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Goodly";
+  src: url("fonts/Goodly-Semibold .ttf") format("truetype");
+  font-weight: 600 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Tusker";
+  src: url("fonts/TuskerGrotesk-5600Semibold.ttf") format("truetype");
+  font-weight: 600 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --izilynk-green: #003d3d;
   --izilynk-yellow: #e2fc3a;
@@ -14,7 +54,7 @@ body {
   margin: 0;
   color: var(--izilynk-cream);
   background: var(--izilynk-green);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   letter-spacing: 0;
 }
 
@@ -220,14 +260,15 @@ a {
   font-weight: 500;
   line-height: 1.5;
   margin-top: 0.45rem !important;
-  margin-bottom: 5rem !important;
+  margin-bottom: 1.5rem !important;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
   line-clamp: 3;
 }
 
 .brand-tagline {
-  margin-bottom: 0.8rem !important;
+  font-family: "Goodly", "Poppins", system-ui, sans-serif;
+  margin-top: 0 !important;
   font-size: 1.28rem;
   font-weight: 900;
   line-height: 1.25;
@@ -240,10 +281,11 @@ a {
 .brand-subtitle {
   max-width: 35rem;
   color: var(--izilynk-cream);
+  font-family: "Tusker", "Poppins", system-ui, sans-serif;
   font-size: 1.03rem;
   font-weight: 600;
   line-height: 1.5;
-  margin-bottom: 2.25rem !important;
+  margin-bottom: 3rem !important;
 }
 
 .construction-container {
@@ -301,6 +343,7 @@ a {
   border-radius: 8px;
   background: var(--button-bg);
   color: var(--button-color);
+  font-family: "Poppins", system-ui, sans-serif;
   font-size: 1rem;
   font-weight: 800;
   line-height: 1.2;
@@ -409,24 +452,16 @@ a {
   margin-top: 4.75rem !important;
 }
 
-.contact-card-image {
-  position: absolute;
-  top: -8.55rem;
-  right: -9.0rem;
-  z-index: 2;
-  width: min(19rem, 142vw);
-  height: auto;
-  transform: rotate(50deg);
-}
-
 .contact-block {
   display: grid;
   gap: 0.9rem;
-  padding: 2.25rem 1rem 1rem;
+  margin-top: 3rem;
+  padding: 1.5rem;
   border: 1px solid rgba(250, 254, 221, 0.22);
   border-radius: 8px;
   background: rgba(250, 254, 221, 0.1);
   box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+  font-family: "Poppins", system-ui, sans-serif;
   font-style: normal;
 }
 
@@ -469,6 +504,7 @@ a {
 
 .contact-person strong {
   color: var(--izilynk-cream);
+  font-family: "Tusker", "Poppins", system-ui, sans-serif;
   font-size: 1.03rem;
   font-weight: 900;
   line-height: 1.15;
@@ -489,6 +525,11 @@ a {
 
 .contact-detail {
   padding-left: 0.1rem;
+}
+
+.contact-detail[href^="mailto:"] span:not(.contact-icon-spacer) {
+  font-family: "Goodly", "Poppins", system-ui, sans-serif;
+  font-weight: 900;
 }
 
 .contact-divider {
@@ -517,6 +558,10 @@ a {
   color: var(--izilynk-yellow);
   font-size: 1.05rem;
   line-height: 1.35;
+}
+
+.contact-icon-spacer {
+  flex: 0 0 1.05rem;
 }
 
 .contact-block span {
@@ -606,7 +651,7 @@ a {
 
   .brand-description {
     font-size: 1rem;
-    margin-bottom: 0.75rem !important;
+    margin-bottom: 1.5rem !important;
   }
 
   .brand-tagline {
@@ -615,7 +660,7 @@ a {
 
   .brand-subtitle {
     font-size: 0.98rem;
-    margin-bottom: 2rem !important;
+    margin-bottom: 3rem !important;
   }
 
   .construction-container {
